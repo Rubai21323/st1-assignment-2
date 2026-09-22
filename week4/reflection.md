@@ -23,3 +23,10 @@
 - How long is a standard appointment slot (e.g., 15 mins, 30 mins)?
 - What are the clinic's operating hours?
 - Do different types of appointments require different lengths of time?
+
+## Part B – Limitations of the starter code (AI OFF)
+- Data is not saved permanently; if the program closes, all bookings are lost because it only uses a temporary list in memory.
+- The book_appointment function does not check if the practitioner is already booked at that time, which allows double-booking.
+- There is no validation for the date and time format, so text like 'banana' would be accepted instead of a real time.
+- The code does not support cancelling, searching, or changing an existing appointment.
+- The book_appointment function does not check if the practitioner's name is valid or if they even work at the clinic.
