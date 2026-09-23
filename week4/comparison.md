@@ -19,3 +19,13 @@
 | Adds assumptions? | No - It follows the handout structure. | Yes - It assumes all input will be valid text. |
 | Handles errors? | Partly - It stops an empty name (but by crashing), and accepts double bookings and a None time. | No - It does not check for anything, so it saves bad data. |
 | Could I explain it? | Yes - I understand the logic and where it fails. | Yes - The code is simple enough to explain. |
+
+## Part G – One improvement
+
+**Change:** Added a check in `book_appointment` that blocks a booking if the same practitioner already has an appointment at that time.
+
+**Why this one:** This fixes the double-booking problem from the case study. It is a critical safety feature for a clinic, and it was the exact limitation we found in the starter code.
+
+**Evidence:** Before the fix, Alice and Bob were both booked with Dr Smith at 10:00 AM (partF_human_test1-2.png). After the fix, the second booking was rejected with a ValueError (partG_double_booking_blocked.png).
+
+**Limitation still remaining:** It still crashes with a ValueError instead of showing a friendly error message when a double booking is attempted. It also does not validate if the time is in the correct format (like "10:00 AM" vs "10:00").

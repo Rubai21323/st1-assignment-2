@@ -24,6 +24,9 @@ appointments = []
 def book_appointment(patient_name, practitioner_name, appointment_time):
     if not patient_name:
         raise ValueError("Patient name cannot be empty")
+    for existing in appointments:
+        if existing["practitioner"] == practitioner_name and existing["time"] == appointment_time:
+            raise ValueError("This practitioner is already booked at that time")
     appointment = {
         "patient": patient_name,
         "practitioner": practitioner_name,
@@ -41,7 +44,4 @@ def display_appointments():
 print("Welcome to SmartCare: The Clinical Appointment Booking System!")
 book_appointment('Alice Smith', 'Dr. John Doe', '2024-07-20 10:00 AM')
 book_appointment('Bob Johnson', 'Dr. Jane Roe', '2024-07-20 11:30 AM')
-display_appointments()
-print("--- TEST 4 ---")
-book_appointment("Carol", "Dr Smith", None)
 display_appointments()
