@@ -44,3 +44,13 @@ Here is a small appointment-booking function.
    Verified by running it? Yes – I predicted it would print an error message, but when I ran it the program stopped with a ValueError Traceback. This means  the whole program stops, so the receptionist can't book any more appointments until they fix the code.
 2. Q: Why is booking Alice and Bob with Dr Smith at 10:00 a problem?
    A: It is a problem because the book_appointment function does not check if the practitioner is already booked at that time. It will simply add both appointments to the list, resulting in a double-booking conflict for Dr. Smith. The code needs a loop to check for overlapping times before adding a new appointment.
+   
+## Part D – AI-generated alternative
+
+### Prompt I used
+Create a simple, beginner-friendly Python function that stores a patient name, practitioner name and appointment time for a small clinic. Do not use a database. Do not use a GUI. Keep it short and include a small example of how to call it.
+
+### Result
+- Code saved unchanged in ai_version.py (evidence: screenshots/partD_copilot.png, partD_ai_run.png)
+- Yes. Copilot provided a simple Python function using a list and a dictionary, which means it didn't use a database or add a complex GUI, sticking to the beginner-level constraints.
+- It left out all data validation. It did not check if the patient name was empty, and it did not check for double-booking conflicts, which were the exact limitations we found in the starter code.
