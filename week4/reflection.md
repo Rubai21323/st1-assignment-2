@@ -30,3 +30,15 @@
 - There is no validation for the date and time format, so text like 'banana' would be accepted instead of a real time.
 - The code does not support cancelling, searching, or changing an existing appointment.
 - The book_appointment function does not check if the practitioner's name is valid or if they even work at the clinic.
+
+## Part H – Reflection
+
+Before using AI, I ran the starter code myself and found five main limitations. The biggest issues were that all bookings are lost when the program closes, and it had no way to stop double-bookings.
+
+Copilot helped me understand what the code was actually doing. It explained how the `book_appointment` function was just adding dictionaries to a simple list.
+
+When I asked Copilot to write its own version, it assumed that all the data typed in would be perfect. When I tested it, that wasn't true. Unlike the human version, it didn't crash, but it quietly saved bad data like an empty name or a `None` time without any warning.
+
+I verified the AI's claims by running the code myself. For example, I thought an empty name would print a friendly error, but it actually crashed with a ValueError. I also found that the code accepted three spaces (`"   "`) as a real name, which Copilot completely missed.
+
+I chose to fix double booking because it is a serious safety problem for a clinic. My check loops through the appointments list and compares the practitioner and time. The remaining engineering work was mine: choosing which one fix mattered most, testing before and after the change, and deciding what was out of scope. The fix still doesn't show a friendly message; it just raises a ValueError.
