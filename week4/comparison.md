@@ -14,8 +14,8 @@
 | Question | Human version | AI version |
 |---|---|---|
 | Easy to understand? | Yes - It has clear validation checks. | Yes - It is shorter and simpler. |
-| Runs successfully? | No - It crashes on blank names or None values. | Yes - It does not crash, but it saves bad data instead. |
+| Runs successfully? | Partly - It runs, but crashes on a blank name. | Yes - It does not crash, but it saves bad data instead. |
 | Uses only required features? | Yes - It sticks to the basic handout requirements. | Yes - It only uses a list and dictionary. |
 | Adds assumptions? | No - It follows the handout structure. | Yes - It assumes all input will be valid text. |
-| Handles errors? | Partly - It checks for empty names, but crashes on other bad inputs. | No - It does not check for anything, so it saves bad data. |
+| Handles errors? | Partly - It stops an empty name (but by crashing), and accepts double bookings and a None time. | No - It does not check for anything, so it saves bad data. |
 | Could I explain it? | Yes - I understand the logic and where it fails. | Yes - The code is simple enough to explain. |
