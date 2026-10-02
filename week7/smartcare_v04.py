@@ -8,22 +8,31 @@ class AppointmentStatus(Enum):
 
 
 class Patient:
-    def __init__(self, patient_id, name, date_of_birth, phone, address):
+    def __init__(self, patient_id: str, name: str, date_of_birth: str, phone: str, address: str):
+        if not patient_id or not patient_id.strip():
+            raise ValueError("Patient ID cannot be empty")
+        if not name or not name.strip():
+            raise ValueError("Patient name cannot be empty")
         self.patient_id = patient_id
         self.name = name
         self.date_of_birth = date_of_birth
         self.phone = phone
         self.address = address
 
-    def update_contact(self, phone, address):
+    def update_contact(self, phone: str, address: str):
         self.phone = phone
         self.address = address
 
 
 class Practitioner:
-    def __init__(self, practitioner_id, name):
+    def __init__(self, practitioner_id: str, name: str, specialty: str):
+        if not practitioner_id or not practitioner_id.strip():
+            raise ValueError("Practitioner ID cannot be empty")
+        if not name or not name.strip():
+            raise ValueError("Practitioner name cannot be empty")
         self.practitioner_id = practitioner_id
         self.name = name
+        self.specialty = specialty
 
 
 class Appointment:
@@ -57,6 +66,6 @@ class AppointmentManager:
 
 if __name__ == "__main__":
     p = Patient("P001", "Alice Smith", "1990-05-01", "0400000000", "1 Main St")
-    dr = Practitioner("D001", "Dr Smith")
+    dr = Practitioner("D001", "Dr Smith", "General Practice")
     appt = Appointment(p, dr, "2026-10-05", "10:00")
     print(appt.patient.name, "with", appt.practitioner.name, "at", appt.time, "-", appt.status.value)
