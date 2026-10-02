@@ -42,8 +42,8 @@ class InvalidAppointmentStatusTransitionError(Exception):
 class Appointment:
     def __init__(
         self,
-        patient: "Patient",
-        practitioner: "Practitioner",
+        patient: Patient,
+        practitioner: Practitioner,
         date: str,
         time: str,
     ) -> None:
@@ -113,7 +113,36 @@ class AppointmentManager:
 
 
 if __name__ == "__main__":
+    # 1. Valid objects
     p = Patient("P001", "Alice Smith", "1990-05-01", "0400000000", "1 Main St")
     dr = Practitioner("D001", "Dr Smith", "General Practice")
     appt = Appointment(p, dr, "2026-10-05", "10:00")
-    print(appt.patient.name, "with", appt.practitioner.name, "at", appt.time, "-", appt.status.value)
+    print("1. Valid:", appt.patient.name, "with", appt.practitioner.name, "at", appt.time, "-", appt.status.value)
+
+    # 2. Invalid input: patient name is only spaces
+    try:
+        Patient("P002", "   ", "1990-01-01", "0400000001", "2 Main St")
+    except ValueError as error:
+        print("2. Blank name rejected:", error)
+
+    # 3. Invalid input: no appointment time
+    try:
+        Appointment(p, dr, "2026-10-05", None)
+    except ValueError as error:
+        print("3. Missing time rejected:", error)
+
+    # 4. Cancel a booked appointment
+    appt.cancel()
+    print("4. After cancel:", appt.status.value)
+
+    # 5. Illegal repeated transition: cancel again
+    try:
+        appt.cancel()
+    except InvalidAppointmentStatusTransitionError as error:
+        print("5. Second cancel rejected:", error)
+
+    # 6. Try to change the status directly from outside
+    try:
+        appt.status = AppointmentStatus.BOOKED
+    except AttributeError as error:
+        print("6. Direct status change rejected:", error)
