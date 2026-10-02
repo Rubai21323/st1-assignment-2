@@ -47,13 +47,23 @@ class Appointment:
         date: str,
         time: str,
     ) -> None:
+        if patient is None or practitioner is None:
+            raise ValueError("Appointment needs a patient and a practitioner")
+        if not date or not date.strip():
+            raise ValueError("Appointment date cannot be empty")
+        if not time or not time.strip():
+            raise ValueError("Appointment time cannot be empty")
         self.patient: Patient = patient
         self.practitioner: Practitioner = practitioner
         self.date: str = date
         self.time: str = time
 
         # FR-01, FR-04: all new appointments start as BOOKED.
-        self.status: AppointmentStatus = AppointmentStatus.BOOKED
+        self._status: AppointmentStatus = AppointmentStatus.BOOKED
+
+    @property
+    def status(self) -> AppointmentStatus:
+        return self._status
 
     def cancel(self) -> None:
         """
@@ -69,7 +79,7 @@ class Appointment:
                 f"'{self.status.value}'."
             )
 
-        self.status = AppointmentStatus.CANCELLED
+        self._status = AppointmentStatus.CANCELLED
 
     def complete(self) -> None:
         """
@@ -85,8 +95,8 @@ class Appointment:
                 f"'{self.status.value}'."
             )
 
-        self.status = AppointmentStatus.COMPLETED
-
+        self._status = AppointmentStatus.COMPLETED
+        
 
 class AppointmentManager:
     def __init__(self):
