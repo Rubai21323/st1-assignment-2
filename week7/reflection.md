@@ -1,0 +1,7 @@
+# Stage 4 – Reflection
+
+In Copilot's Appointment class, I modified the public status attribute. Any code could change the status and bypass the checks in the cancel() and complete() methods, so I changed it to _status with a read-only property. I also added checks in __init__ so an appointment can't be created without a patient, practitioner, date or time. I removed the duplicate AppointmentStatus enum that Copilot added too, since it was already in smartcare_v04.py and having two copies could easily get out of sync.
+
+I did manual behaviour checks in the terminal to see if my changes were working as expected. For example, I tried to set appt.status directly from outside the class, and Python told me the property has no setter. This proved the status could only be changed through cancel() and complete().
+
+The design I approved limited the AI, because I gave Copilot the UML and the rules from the beginning. That meant I could check each piece of its code against something fixed rather than just trusting it. This time Copilot was better and mostly stuck to the classes and methods in the UML, and the problems were smaller details I could catch by checking against the design. In Week 6, it suggested extra classes like Database that didn't belong in the domain model.
